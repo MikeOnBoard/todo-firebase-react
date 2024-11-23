@@ -1,70 +1,112 @@
-# Getting Started with Create React App
+# **Todo Firebase React**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Review](https://github.com/MikeOnBoard/todo-firebase-react/blob/master/github_source/preview-react-firebase-todo.JPG)
 
-## Available Scripts
+A React application integrated with Firebase that serves as a simple to-do list manager. It allows users to add, update, and delete tasks while storing data in Firebase for persistence.
 
-In the project directory, you can run:
+## **Project Structure**
+```bash
+todo-firebase-react/
+├── src/
+│   ├── components/       # Reusable UI components like TodoItem and TodoList
+│   ├── firebase.js       # Firebase configuration
+│   ├── App.js            # Main app component
+│   ├── index.js          # Entry point of the application
+│   ├── styles.css        # Custom styling
+├── public/               # Static files (e.g., index.html)
+├── .env                  # Environment variables (e.g., Firebase config)
+├── package.json          # Dependencies and scripts
+└── README.md             # Project documentation
+```
+## **Features**
+- **Add Tasks**: Create tasks to organize your to-do list.
+- **Update Tasks**: Modify task descriptions directly in the app.
+- **Delete Tasks**: Remove tasks that are no longer needed.
+- **Firebase Integration**: Real-time storage of tasks in Firebase.
+## **Prerequisites**
+- **Node.js** (v14 or above) and **npm** (or yarn).
+- A Firebase project with Firestore enabled.
+Getting Started
+1. Clone the repository:
 
-### `npm start`
+```bash
+git clone https://github.com/MikeOnBoard/todo-firebase-react.git
+cd todo-firebase-react
+```
+2. Install dependencies:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+````bash
+npm install
+````
+3. Set up Firebase:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Go to the Firebase Console.
+- Create a new project or use an existing one.
+- Enable Cloud Firestore and create a database.
+- Add your web app to Firebase and copy the configuration settings.
+4. Add Firebase credentials:
 
-### `npm test`
+- Create a ``.env`` file in the root directory and add:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+````env
+REACT_APP_FIREBASE_API_KEY=your_api_key
+REACT_APP_FIREBASE_AUTH_DOMAIN=your_auth_domain
+REACT_APP_FIREBASE_PROJECT_ID=your_project_id
+REACT_APP_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+REACT_APP_FIREBASE_APP_ID=your_app_id
+````
+5. Start the development server:
 
-### `npm run build`
+````bash
+npm start
+````
+Open http://localhost:3000 to view it in the browser.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## **Firebase Integration**
+### **Firestore Database Structure**
+Firestore is used to store tasks in a collection. The structure is as follows:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+````sql
+Copiar código
+tasks/
+  ├── taskId (auto-generated)
+      ├── description: string
+      ├── completed: boolean
+      ├── timestamp: timestamp
+````
+### **Firebase Configuration**
+The ``firebase.js`` file is responsible for initializing Firebase and setting up Firestore. Ensure that this file reads your environment variables correctly.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## **Available Scripts**
+### **``npm start``**
+Runs the app in development mode.
 
-### `npm run eject`
+### **``npm test``**
+Launches the test runner in interactive mode.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### **``npm run build``**
+Builds the app for production in the build/ folder.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### **``npm run eject``**
+Ejects the default CRA configuration for full customization.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## **Contributing**
+We welcome contributions! To get started:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Fork the repository.
+2. Create a new branch:
 
-## Learn More
+````bash
+git checkout -b feature/your-feature
+````
+3. Commit your changes:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+````bash
+git commit -m "Add your feature"
+````
+4. Push the branch and open a Pull Request.
+## **Conclusion**
+The Todo Firebase React app demonstrates the integration of React with Firebase for real-time database functionality. It’s a simple and scalable project ideal for learning Firebase basics and implementing CRUD operations in React.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+For any questions or issues, feel free to create an issue on the repository.
