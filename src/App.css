@@ -1,38 +1,554 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+/* App */
 .App {
-  text-align: center;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Sidebar */
+.Sidebar {
+    width: 300px;
+    min-width: 210px;
+    height: 100%;
+    border-right: 1px solid #ccc;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Main */
+.Main {
+    width: 100%;
+    height: 100%;
+    background-image: url('./images/Back-image.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* User */
+.User {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1rem;
+    border: 1px solid #ebebeb;
 }
 
-.App-link {
-  color: #61dafb;
+.User .logo img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid #ccc
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.User .info {
+    font-size: 1.1rem;
+    font-weight: bold;
+    flex-direction: column;
+    margin-left: 1rem;
+    color: #000;
+}
+
+.User .info a {
+    text-decoration: none;
+    display: flex;
+    justify-content: flex-end;
+    color: #3e928f;
+}
+
+/* Modal */
+.Modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 99;
+}
+
+.Modal .container {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -25%);
+}
+
+/* AddNewTodo */
+.AddNewTodo {
+    border-bottom: 1px solid #ebebeb;
+}
+
+.AddNewTodo .button {
+    width: 100%;
+    padding: 1rem;
+    height: 70px;
+}
+
+.AddNewTodo .button button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: bold;
+    background-color: #3e928f;
+    cursor: pointer;
+}
+
+.AddNewTodo .button button:hover {
+    filter: brightness(1.1);
+    transition: all 0.3s ease-in-out;
+}
+
+/* AddNewTodo form */
+.TodoForm {
+    padding: 1rem 1rem calc(1rem + 40px) 1rem;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+.TodoForm .text input {
+    padding: 1rem;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    border: none;
+    font-size: 1.2rem;
+}
+
+.TodoForm .text input:focus {
+    outline: none;
+    border-bottom: 1px solid #3e928f;
+}
+
+.TodoForm .remind {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.TodoForm p {
+    margin-left: 0.5rem;
+}
+
+.TodoForm .title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    padding: 0.5rem;
+}
+
+.TodoForm .pick-day {
+    padding: 1.5rem 1.5rem 0 1.5rem;
+}
+
+.TodoForm .pick-time {
+    padding: 1.5rem;
+}
+
+.TodoForm .pick-project {
+    padding: 0.5rem;
+}
+
+.TodoForm .pick-project .projects {
+    padding: 1rem 1rem 0 1rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.TodoForm .pick-project .projects .project {
+    border: 1px solid #3e928f;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.TodoForm .pick-project .projects .active {
+    background-color: #3e928f;
+    color: #fff;
+}
+
+.TodoForm .cancel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    color: #923e3f;
+}
+
+.TodoForm .cancel:hover {
+    filter: brightness(1.5);
+    transition: all 0.3s ease;
+}
+
+.TodoForm .save {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    cursor: pointer;
+}
+
+.TodoForm .save:hover {
+    filter: brightness(1.2);
+    transition: all 0.3s ease;
+}
+
+.TodoForm .save button {
+    width: 100%;
+    height: 40px;
+    background: #3e928f;
+    color: #fff;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 0 0 4px 4px;
+    cursor: pointer;
+}
+
+/* Calendar */
+.Calendar {
+    padding: 1rem;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.Calendar .header {
+    display: flex;
+    align-items: center;
+}
+
+.Calendar .header .title {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.Calendar .header .title p {
+    margin-left: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.Calendar .header .buttons span {
+    border-radius: 50%;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Calendar .header .buttons span:hover {
+    background-color: #ebebeb;
+    transition: background 0.3s ease-in-out;
+}
+
+.Calendar .items {
+    padding: 0.5rem;
+}
+
+.Calendar .items .item {
+    padding: 0.25rem;
+    margin: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.Calendar .items .item:hover {
+    background-color: #3e928f;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Projects */
+.Projects {
+    padding: 1rem;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.Projects .header {
+    display: flex;
+    align-items: center;
+}
+
+.Projects .header .title {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.Projects .header .title p {
+    margin-left: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.Projects .header .buttons {
+    display: flex;
+    align-items: center;
+}
+
+.Projects .header .buttons span .edit {
+    margin-right: 5px;
+}
+
+.Projects .header .buttons span {
+    border-radius: 50%;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Projects .header .buttons span:hover {
+    background-color: #d4d1d1;
+    transition: background 0.3s ease-in-out;
+}
+
+.Projects .items {
+    padding: 0.5rem;
+}
+
+/* Project */
+.Project {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0.25rem;
+    margin: 5px;
+    font-size: 1rem;
+}
+
+.Project .name {
+    cursor: pointer;
+    word-break: break-all;
+}
+
+.Project .buttons {
+    display: flex;
+    align-items: center;
+}
+
+.Project .buttons .total-todos {
+    position: absolute;
+    right: 0;
+    background: #d4d1d1;
+    width: 25px;
+    height: 25px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.Project .buttons .edit-delete {
+    position: absolute;
+    right: 0;
+    display: flex;
+}
+
+.Project .buttons .edit-delete span {
+    border-radius: 50%;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease-in-out;
+}
+
+.Project .buttons .edit-delete span.edit:hover {
+    background-color: #acffac;
+}
+
+.Project .buttons .edit-delete span.delete:hover {
+    background-color: #ffacac;
+}
+
+/* AddNewProject */
+.AddNewProject .add-button span {
+    margin-right: 5px;
+}
+
+/* ProjectForm */
+.ProjectForm {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 4px;
+    position: relative;
+    padding-bottom: 40px;
+}
+
+.ProjectForm input {
+    width: 100%;
+    height: 40px;
+    margin: 15px 0;
+    border: none;
+    font-size: 1rem;
+}
+
+.ProjectForm input:focus {
+    outline: none;
+    border-bottom: #3e928f 1px solid;
+}
+
+.ProjectForm button {
+    position: absolute;
+    bottom: 0;
+    height: 40px;
+    width: 50%;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: filter 0.3s ease-in-out;
+}
+
+.ProjectForm button.cancel {
+    left: 0;
+    background-color: #ffacac;
+}
+
+.ProjectForm button.confirm {
+    right: 0;
+    background-color: #3e928f;
+}
+
+.ProjectForm button:hover {
+    filter: brightness(1.1);
+}
+
+/* Todos */
+.Todos {
+    width: 450px;
+    height: 80%;
+    background-color: white;
+
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+
+    border-radius: 4px;
+    opacity: 0.9;
+
+    padding: 0 0.5rem 0.5rem 0.5rem;
+    overflow-y: auto;
+}
+
+.Todos .selected-project {
+    margin: 1rem 0;
+    text-transform: capitalize;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding-bottom: 2px;
+    border-bottom: #3e928f 1px solid;
+}
+
+.Todos .todos {
+    overflow-y: auto;
+}
+
+/* todo */
+.Todo {
+    padding: 0.5rem 1rem;
+}
+
+.Todo .todo-container {
+    display: flex;
+    align-items: center;
+}
+
+.Todo .todo-container .check-todo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 15px;
+}
+
+.Todo .todo-container span {
+    cursor: pointer;
+}
+
+.Todo .todo-container .text {
+    position: relative;
+    flex: 1;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.Todo .todo-container .text span {
+    font-size: 0.8rem;
+    color: #bebebe;
+}
+
+.Todo .todo-container .text .line {
+    height: 1px;
+    background: #bebebe;
+    position: absolute;
+    top: 25%;
+    width: 0;
+    transition: width 250ms ease-in-out;
+}
+
+.Todo .todo-container .text .line-through {
+    width: 100%;
+}
+
+.Todo .todo-container .add-to-next-day {
+    margin-right: 10px;
+}
+
+/* EditTodo */
+.EditTodo {
+    position: absolute;
+    bottom: 40px;
+    left: calc(40px + 450px + 40px);
+
+    background-color: #fff;
+    height: 80%;
+    width: 450px;
+
+    border-radius: 4px;
+    opacity: 0.9;
+}
+
+.EditTodo .header {
+    margin: 1rem 0.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding-bottom: 2px;
+    border-bottom: #3e928f 1px solid;
+}
+
+/* Next 7 days */
+.Next7Days .day {
+    margin: 5px;
+    display: flex;
+}
+
+.Next7Days .day .name {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.Next7Days .day .total-todos {
+    margin-left: 10px;
 }
